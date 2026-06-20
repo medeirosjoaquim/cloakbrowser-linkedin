@@ -1,0 +1,7 @@
+cloakbrowser==0.3.31
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+pytest
+httpx

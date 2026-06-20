@@ -1,0 +1,37 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Secrets & local config
+.env
+.env.local
+
+# Runtime state (browser session + logs)
+profile/
+state.json
+scraper.log*
+*.log
+
+# Scrape outputs / scratch
+*.tmp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+guide.md
+api-examples.md
+
+# Local agent handoff / session notes (may contain scratch secrets)
+.handoffs/
+deploy.sh
+
+# Local probes (self-contained with an embedded API key + scraped payloads)
+remote_payload_probe.sh
+payload-report-*.md
+payload-raw-*/

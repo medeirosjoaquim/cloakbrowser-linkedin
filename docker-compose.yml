@@ -1,0 +1,18 @@
+services:
+  scraper:
+    build: .
+    ports:
+      - "5000:5000"
+    # LINKEDIN_EMAIL / LINKEDIN_PASSWORD (copy .env.example to .env first).
+    env_file:
+      - .env
+    # Chromium is memory-hungry; give it room even with --disable-dev-shm-usage.
+    shm_size: "1gb"
+    # Persist the logged-in session across restarts so you don't re-auth (and
+    # re-trigger a confirmation code) every boot.
+    volumes:
+      - linkedin_profile:/app/profile
+    restart: unless-stopped
+
+volumes:
+  linkedin_profile:

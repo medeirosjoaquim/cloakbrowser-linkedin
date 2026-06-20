@@ -1,0 +1,12 @@
+venv/
+.git/
+.gitignore
+profile/
+state.json
+*.log
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/
+README.md

@@ -1,0 +1,28 @@
+services:
+  linkedin-scraper-api:
+    build: .
+    container_name: linkedin-scraper-api
+    env_file:
+      - .env
+    environment:
+      # Auth gate for the whole API. SHA-256 of the secret; every request must
+      # present the plaintext secret via `Authorization: Bearer <secret>` or
+      # `X-API-Key: <secret>`. The hash is read from the gitignored .env (loaded
+      # above via env_file, and interpolated here) so no credential material
+      # lives in this committed file. Unset/empty -> auth disabled.
+      - API_AUTH_SHA256=${API_AUTH_SHA256:-}
+    shm_size: "1gb"
+    ports:
+      - "9134:5000"        # public endpoint (auth-gated)
+    volumes:
+      - linkedin_profile:/app/profile
+    networks:
+      - proxy-network      # so Caddy can reverse_proxy to it by name
+    restart: unless-stopped
+
+networks:
+  proxy-network:
+    external: true
+
+volumes:
+  linkedin_profile:
